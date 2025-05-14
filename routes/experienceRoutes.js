@@ -5,9 +5,14 @@ const Experience = require('../models/Experience');
 // GET all experiences
 // Returns all documents from the "experiences" collection
 router.get('/', async (req, res) => {
-  const data = await Experience.find();
-  res.json(data);
-});
+    try {
+      const data = await Experience.find();
+      res.json(data);
+    } catch (err) {
+      console.error('GET /api/experience error:', err);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
 
 // POST new experience
 // Adds a new work experience to the database
