@@ -30,6 +30,5 @@ mongoose.connect(process.env.MONGO_URI)
   })
   .catch((err) => {
     console.error('MongoDB connection error:', err);
-    // Start server anyway so Render can detect an open port and not fail the deployment
     app.listen(PORT, () => console.log(`Server running in fallback mode on port ${PORT}`));
   });
